@@ -1,5 +1,5 @@
 def calculate_love_score(name1, name2):
-    name_str = (name1 + name2).strip().lower()
+    name_str = (name1 + name2).lower()
 
     sum_num_true = 0
     for letter_in_true in "true":
@@ -16,4 +16,4 @@ def calculate_love_score(name1, name2):
     score = int(f"{sum_num_true}{sum_num_love}")      
     return score
 
-print(calculate_love_score('karoly hornyak', 'joanna sorichta'))
+print(calculate_love_score('Angela Yu', 'Jack Bauer'))

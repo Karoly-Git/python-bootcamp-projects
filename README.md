@@ -1,6 +1,6 @@
-# 100 Days of Code - The Complete Python Pro Bootcamp
+# 100 Days of Code - The Complete Python Pro Bootcamp Projects
 
-This repository documents my journey through the **100 Days of Code - The Complete Python Pro Bootcamp** by Dr. Angela Yu. Over 100 days, I worked on **100 unique Python projects**, covering a broad range of topics including:
+This repository documents my learning journey through the **100 Days of Code - The Complete Python Pro Bootcamp** by Dr. Angela Yu. Over 100 days, I worked on **100 unique Python projects**, covering a broad range of topics including:
 
 - **Data Science**
 - **Game Development**

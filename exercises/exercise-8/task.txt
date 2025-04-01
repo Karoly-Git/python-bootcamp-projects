@@ -1,5 +1,4 @@
 Love Calculator
-💪 This is a difficult challenge! 💪
 
 You are going to write a function called calculate_love_score() that tests the compatibility between two names. To work out the love score between two people:
 

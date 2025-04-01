@@ -26,7 +26,12 @@ while True:
     else:
         os.system('cls')
 
-auction_winner = max(bid_list, key=bid_list.get)
-highest_bid = bid_list[auction_winner]
+highest_bid = 0
+auction_winner = ""
+
+for bidder in list(bid_list.keys()):
+    if bid_list[bidder] > highest_bid:
+        highest_bid = bid_list[bidder]
+        auction_winner = bidder
 
 print(f"Auction winner is: {auction_winner} with a bid of £{highest_bid:.2f}")

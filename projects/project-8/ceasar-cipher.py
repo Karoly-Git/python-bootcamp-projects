@@ -1,13 +1,6 @@
-ascii_logo = """
-  ______             __         __  __
- |  ____|           /_/        |  \/  |
- | |__ _ __ __ _     ___ _ __ | \  / | __ _ ___
- |  __| '__/ _` |   / _ \ '_ \| |\/| |/ _` / __|
- | |____ | | (_| |  |  __/ | | | |  | | (_| \__ \
- |______|_| \__,_|   \___|_| |_|_|  |_|\__,_|___/
-"""
+import art
 
-print(ascii_logo)
+print(art.logo)
 
 characters = "U5*,X~'ZK6{x02iyz[WQ:fp<M>HEwqhLOrPBt]}@3svTD.8lSG(4gNRC#d_A$+-e|?I^79&\"1;Y=V/ku)n!omJbFcaj"
 

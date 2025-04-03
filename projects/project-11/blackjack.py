@@ -1,7 +1,6 @@
 import art
 import random
-
-cards = art.cards
+import os
 
 card_values = [
     {"name": "ace", "value": 1},
@@ -25,7 +24,6 @@ card_suits = {
     "spades": "♠"
 }
 
-
 def make_deck(card_values, card_suits):
     '''Creates a 48-card deck, excluding Jocker'''
     deck = []
@@ -43,14 +41,37 @@ def get_random_card(deck):
 
 def remove_card(deck, card):
     return deck.remove(card)
+
+def play_a_game(card_values, card_suits):
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(art.logo)
+    while True:
+        wants_play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+        if wants_play not in ["y", "Y"]:
+            print("See you next time!")
+            break
     
+        deck = make_deck(card_values, card_suits)
+        shufled_deck = shufle_deck(deck)
+        
+        players_card_1 = get_random_card(shufled_deck)
+        remove_card(shufled_deck, players_card_1)
+        players_card_2 = get_random_card(shufled_deck)
+        remove_card(shufled_deck, players_card_2)
 
-deck = make_deck(card_values, card_suits)
+        player_score = players_card_1["value"] + players_card_2["value"]
 
-shufled_deck = shufle_deck(deck)
+        computer_card_1 = get_random_card(shufled_deck)
+        remove_card(shufled_deck, computer_card_1)
+        computer_card_2 = get_random_card(shufled_deck)
+        remove_card(shufled_deck, computer_card_2)
 
-for card in shufled_deck:
-    print(card)
+        computer_score = computer_card_1["value"] + computer_card_2["value"]
+
+        print(f"Your cards: [{players_card_1["value"]} {players_card_2["value"]}], current score: {player_score}")
+    return 
+
+play_a_game(card_values, card_suits)
 
 # over 21: bust
 # equal: draw
@@ -60,7 +81,6 @@ for card in shufled_deck:
 # if dealer < 17, has to take one more card
 
 #print(cards["7"]["Spades"], cards["Ace"]["Spades"])
-#input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
 
 # make the deck
 # mix the cards in t deck

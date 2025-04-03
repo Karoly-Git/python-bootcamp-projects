@@ -27,7 +27,7 @@ card_suits = {
 
 
 def make_deck(card_values, card_suits):
-    # Creates a 48-card deck, excluding Jocker
+    '''Creates a 48-card deck, excluding Jocker'''
     deck = []
     for suit in card_suits.keys():
         for value in card_values:
@@ -38,10 +38,16 @@ def make_deck(card_values, card_suits):
 def shufle_deck(deck):
     return random.sample(deck, len(deck))
 
+def get_random_card(deck):
+    return random.choice(deck)
+
+def remove_card(deck, card):
+    return deck.remove(card)
+    
+
 deck = make_deck(card_values, card_suits)
 
 shufled_deck = shufle_deck(deck)
-
 
 for card in shufled_deck:
     print(card)

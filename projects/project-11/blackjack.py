@@ -88,7 +88,11 @@ def play_a_game(card_values, card_suits):
     
     while player["score"] < 21:
         take_another = input("Would you like one more card? Enter 'y' for yes or 'n' for no: ").strip().lower()
-        if take_another == "n":
+
+        if take_another not in ['y', 'n']:
+            print("Invalid input! Enter 'y' for yes or 'n' for no: ")
+            continue
+        elif take_another == "n":
             print(f"\tYour final hand: {cards_to_print(player["cards"])}, final score: {player["score"]}")
             break
         else:
@@ -103,6 +107,7 @@ def play_a_game(card_values, card_suits):
                 print("\tIt's a Bust, you lost!")
                 break
     
+
 
 if wants_to_play in ["y", "Y"]:
     os.system('cls' if os.name == 'nt' else 'clear')

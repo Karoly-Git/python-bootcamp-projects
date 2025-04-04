@@ -33,7 +33,7 @@ def make_deck(card_values, card_suits):
     
     return deck
 
-def shufle_deck(deck):
+def shuffle_deck(deck):
     return random.sample(deck, len(deck))
 
 def get_random_card(deck):
@@ -70,17 +70,17 @@ def play_a_game(card_values, card_suits):
     }
    
     deck = make_deck(card_values, card_suits)
-    shufled_deck = shufle_deck(deck)
+    shuffled_deck = shuffle_deck(deck)
 
     while len(player["cards"]) < 2:
-        card = get_random_card(shufled_deck)
+        card = get_random_card(shuffled_deck)
         player["cards"].append(card)
-        remove_card(shufled_deck, card)
+        remove_card(shuffled_deck, card)
 
     while len(computer["cards"]) < 2:
-        card = get_random_card(shufled_deck)
+        card = get_random_card(shuffled_deck)
         computer["cards"].append(card)
-        remove_card(shufled_deck, card)
+        remove_card(shuffled_deck, card)
 
     calculate_score(player)
     calculate_score(computer)
@@ -92,17 +92,17 @@ def play_a_game(card_values, card_suits):
     while player["score"] < 21:
         take_another = input("Would you like one more card? Enter 'y' for yes or 'n' for no: ").strip().lower()
 
-        if take_another not in ['y', 'n']:
+        if take_another not in ["y", "n"]:
             print("Invalid input! Enter 'y' for yes or 'n' for no: ")
             continue
         elif take_another == "n":
             print(f"\tYour final hand: {cards_to_print(player["cards"])}, final score: {player["score"]}")
             break
         else:
-            card = get_random_card(shufled_deck)
+            card = get_random_card(shuffled_deck)
             player["cards"].append(card)
             player["score"] += card["value"]
-            remove_card(shufled_deck, card)
+            remove_card(shuffled_deck, card)
 
             print(f"\tYour cards: {cards_to_print(player["cards"])}, current score: {player["score"]}")
 
@@ -112,13 +112,13 @@ def play_a_game(card_values, card_suits):
     
     # Computer's loop
     while computer["score"] < 21:
-        card = get_random_card(shufled_deck)
+        card = get_random_card(shuffled_deck)
         if computer["score"] + card["value"] > 21:
             print(f"\tComputer's final hand: {cards_to_print(computer["cards"])}, final score: {computer["score"]}")
             break
         computer["cards"].append(card)
         computer["score"] += card["value"]
-        remove_card(shufled_deck, card)
+        remove_card(shuffled_deck, card)
             
     # Compare who won
     if player["score"] == computer["score"]:
@@ -131,7 +131,7 @@ def play_a_game(card_values, card_suits):
 while True:
     wants_to_play = input("Do you want to play a game of Blackjack? Enter 'y' for yes or 'n' for no: ").strip().lower()
 
-    while wants_to_play not in ['y', 'n']:
+    while wants_to_play not in ["y", "n"]:
         wants_to_play = input("Invalid input! Enter 'y' for yes or 'n' for no: ")
    
     if wants_to_play == 'y':

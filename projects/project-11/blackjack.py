@@ -115,6 +115,14 @@ def play_a_game(card_values, card_suits):
         computer["score"] += card["value"]
         remove_card(shufled_deck, card)
     
+    # Compare who won
+    if player["score"] == computer["score"]:
+        print("It's a Draw!")
+    elif player["score"] > computer["score"]:
+        print("You won!")
+    else:
+        print("Computer won!")
+
 wants_to_play = input("Do you want to play a game of Blackjack? Enter 'y' for yes or 'n' for no: ").strip().lower()
 
 while wants_to_play not in ['y', 'n']:

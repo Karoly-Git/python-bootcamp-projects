@@ -66,18 +66,24 @@ def play_a_game(card_values, card_suits):
 
     while len(computer["cards"]) < 2:
         card = get_random_card(shufled_deck)
-        player["cards"].append(card)
+        computer["cards"].append(card)
         remove_card(shufled_deck, card)
 
-    for card in player["card"]:
-        player["score"] += card["value"] # if Ace?
+    # if card is Ace?
+    for card in player["cards"]:
+        player["score"] += card["value"]
 
-    for card in computer["card"]:
-        computer["score"] += card["value"] # if Ace?
-      
+    # if card is Ace?
+    for card in computer["cards"]:
+        computer["score"] += card["value"]
+    
+    print(f"\tYour cards: [{player["cards"][0]["value"], player["cards"][1]["value"]}], current score: {player["score"]}")
+    print(f"\tComputer's first card: {computer["cards"][0]["value"]}")
+    
+    if player["score"] < 21:
+        pass
+        # input()
 
-
-    # print(f"Your cards: [{players_card_1["value"]} {players_card_2["value"]}], current score: {player_score}")
 
     # print(f"Computer's first card: {computer_card_1["value"]}")
 

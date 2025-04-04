@@ -42,8 +42,14 @@ def get_random_card(deck):
 def remove_card(deck, card):
     return deck.remove(card)
 
-wants_to_play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+def cards_to_print(cards_list):
+    cards_to_print = []
+    for card in cards_list:
+        cards_to_print.append(card["value"])
+    return cards_to_print
 
+
+wants_to_play = input("Do you want to play a game of Blackjack? Enter 'y' for yes or 'n' for no: ").strip().lower()
 
 def play_a_game(card_values, card_suits):
     player = {
@@ -77,19 +83,26 @@ def play_a_game(card_values, card_suits):
     for card in computer["cards"]:
         computer["score"] += card["value"]
     
-    print(f"\tYour cards: [{player["cards"][0]["value"], player["cards"][1]["value"]}], current score: {player["score"]}")
+    print(f"\tYour cards: {cards_to_print(player["cards"])}, current score: {player["score"]}")
     print(f"\tComputer's first card: {computer["cards"][0]["value"]}")
     
-    if player["score"] < 21:
-        pass
-        # input()
+    while player["score"] < 21:
+        take_another = input("Would you like one more card? Enter 'y' for yes or 'n' for no: ").strip().lower()
+        if take_another == "n":
+            print(f"\tYour final hand: {cards_to_print(player["cards"])}, final score: {player["score"]}")
+            break
+        else:
+            card = get_random_card(shufled_deck)
+            player["cards"].append(card)
+            player["score"] += card["value"]
+            remove_card(shufled_deck, card)
 
+            print(f"\tYour cards: {cards_to_print(player["cards"])}, current score: {player["score"]}")
 
-    # print(f"Computer's first card: {computer_card_1["value"]}")
-
-    # user_want = input("Type 'y' to get another card, type 'n' to pass: ")
-
-    return 
+            if player["score"] > 21:
+                print("\tIt's a Bust, you lost!")
+                break
+    
 
 if wants_to_play in ["y", "Y"]:
     os.system('cls' if os.name == 'nt' else 'clear')

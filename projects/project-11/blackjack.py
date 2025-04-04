@@ -42,36 +42,58 @@ def get_random_card(deck):
 def remove_card(deck, card):
     return deck.remove(card)
 
+wants_to_play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+
+
 def play_a_game(card_values, card_suits):
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(art.logo)
-    while True:
-        wants_play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
-        if wants_play not in ["y", "Y"]:
-            print("See you next time!")
-            break
-    
-        deck = make_deck(card_values, card_suits)
-        shufled_deck = shufle_deck(deck)
-        
-        players_card_1 = get_random_card(shufled_deck)
-        remove_card(shufled_deck, players_card_1)
-        players_card_2 = get_random_card(shufled_deck)
-        remove_card(shufled_deck, players_card_2)
+    player = {
+        "cards": [],
+        "score": 0
+    }
 
-        player_score = players_card_1["value"] + players_card_2["value"]
+    computer = {
+        "cards": [],
+        "score": 0
+    }
+   
+    deck = make_deck(card_values, card_suits)
+    shufled_deck = shufle_deck(deck)
 
-        computer_card_1 = get_random_card(shufled_deck)
-        remove_card(shufled_deck, computer_card_1)
-        computer_card_2 = get_random_card(shufled_deck)
-        remove_card(shufled_deck, computer_card_2)
+    while len(player["cards"]) < 2:
+        card = get_random_card(shufled_deck)
+        player["cards"].append(card)
+        remove_card(shufled_deck, card)
 
-        computer_score = computer_card_1["value"] + computer_card_2["value"]
+    while len(computer["cards"]) < 2:
+        card = get_random_card(shufled_deck)
+        player["cards"].append(card)
+        remove_card(shufled_deck, card)
 
-        print(f"Your cards: [{players_card_1["value"]} {players_card_2["value"]}], current score: {player_score}")
+    for card in player["card"]:
+        player["score"] += card["value"] # if Ace?
+
+    for card in computer["card"]:
+        computer["score"] += card["value"] # if Ace?
+      
+
+
+    # print(f"Your cards: [{players_card_1["value"]} {players_card_2["value"]}], current score: {player_score}")
+
+    # print(f"Computer's first card: {computer_card_1["value"]}")
+
+    # user_want = input("Type 'y' to get another card, type 'n' to pass: ")
+
     return 
 
-play_a_game(card_values, card_suits)
+if wants_to_play in ["y", "Y"]:
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(art.logo)
+    play_a_game(card_values, card_suits)
+else:
+    print("See you next time!")
+
+
+
 
 # over 21: bust
 # equal: draw

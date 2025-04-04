@@ -104,17 +104,18 @@ def play_a_game(card_values, card_suits):
 
             if player["score"] > 21:
                 print("\tIt's a Bust, you lost!")
-                break
+                return
     
     # Computer's loop
     while computer["score"] < 21:
         card = get_random_card(shufled_deck)
         if computer["score"] + card["value"] > 21:
+            print(f"\tComputer's final hand: {cards_to_print(computer["cards"])}, final score: {computer["score"]}")
             break
         computer["cards"].append(card)
         computer["score"] += card["value"]
         remove_card(shufled_deck, card)
-    
+            
     # Compare who won
     if player["score"] == computer["score"]:
         print("It's a Draw!")

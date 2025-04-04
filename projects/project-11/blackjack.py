@@ -12,6 +12,7 @@ card_values = [
     {"name": "7", "value": 7},
     {"name": "8", "value": 8},
     {"name": "9", "value": 9},
+    {"name": "10", "value": 10},
     {"name": "jack", "value": 10},
     {"name": "queen", "value": 10},
     {"name": "king", "value": 10}
@@ -122,11 +123,11 @@ def play_a_game(card_values, card_suits):
             
     # Compare who won
     if player["score"] == computer["score"]:
-        print("It's a Draw!")
+        print("A draw! You were this close... 🤏")
     elif player["score"] > computer["score"]:
-        print("You won!")
+        print("You win! 🎉")
     else:
-        print("Computer won!")
+        print("Computer wins! 🤖")
 
 while True:
     wants_to_play = input("Do you want to play a game of Blackjack? Enter 'y' for yes or 'n' for no: ").strip().lower()

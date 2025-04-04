@@ -84,6 +84,7 @@ def play_a_game(card_values, card_suits):
     print(f"\tYour cards: {cards_to_print(player["cards"])}, current score: {player["score"]}")
     print(f"\tComputer's first card: {computer["cards"][0]["value"]}")
     
+    # Player's loop
     while player["score"] < 21:
         take_another = input("Would you like one more card? Enter 'y' for yes or 'n' for no: ").strip().lower()
 
@@ -105,15 +106,15 @@ def play_a_game(card_values, card_suits):
                 print("\tIt's a Bust, you lost!")
                 break
     
-        while computer["score"] < 21:
-            card = get_random_card(shufled_deck)
-            if computer["score"] + card["value"] > 21:
-                break
-            player["cards"].append(card)
-            player["score"] += card["value"]
-            remove_card(shufled_deck, card)
-
-
+    # Computer's loop
+    while computer["score"] < 21:
+        card = get_random_card(shufled_deck)
+        if computer["score"] + card["value"] > 21:
+            break
+        computer["cards"].append(card)
+        computer["score"] += card["value"]
+        remove_card(shufled_deck, card)
+    
 wants_to_play = input("Do you want to play a game of Blackjack? Enter 'y' for yes or 'n' for no: ").strip().lower()
 
 while wants_to_play not in ['y', 'n']:
@@ -129,8 +130,6 @@ else:
 
 
 
-# over 21: bust
-# equal: draw
 # lose
 # J, Q, K = 1
 # A = 1 or 11

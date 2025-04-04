@@ -1,29 +1,4 @@
-import art
 import random
-import os
-
-card_values = [
-    {"name": "ace", "value": 1},
-    {"name": "2", "value": 2},
-    {"name": "3", "value": 3},
-    {"name": "4", "value": 4},
-    {"name": "5", "value": 5},
-    {"name": "6", "value": 6},
-    {"name": "7", "value": 7},
-    {"name": "8", "value": 8},
-    {"name": "9", "value": 9},
-    {"name": "10", "value": 10},
-    {"name": "jack", "value": 10},
-    {"name": "queen", "value": 10},
-    {"name": "king", "value": 10}
-]
-
-card_suits = {
-    "hearts": "♥",
-    "diamonds": "♦",
-    "clubs": "♣",
-    "spades": "♠"
-}
 
 def make_deck(card_values, card_suits):
     '''Creates a 52-card deck, excluding Jocker'''
@@ -109,7 +84,7 @@ def play_a_game(card_values, card_suits):
             print(f'\tYour cards: {cards_to_print(player["cards"])}, current score: {player["score"]}')
 
             if player["score"] > 21:
-                print("\tIt's a Bust, you lost!")
+                print("It's a Bust, you lost!")
                 return
     
     # Computer's loop
@@ -133,20 +108,4 @@ def play_a_game(card_values, card_suits):
     else:
         print("Computer wins! 🤖")
 
-while True:
-    wants_to_play = input("Do you want to play a game of Blackjack? Please enter 'y' for yes or 'n' for no: ").strip().lower()
-
-    while wants_to_play not in ["y", "n"]:
-        wants_to_play = input("Invalid input! Please enter 'y' for yes or 'n' for no: ")
-   
-    if wants_to_play == 'y':
-        os.system('cls' if os.name == 'nt' else 'clear')
-        print(art.logo)
-        play_a_game(card_values, card_suits)
-    else:
-        print("See you next time!")
-        break
-
-
 #print(cards["7"]["Spades"], cards["Ace"]["Spades"])
-

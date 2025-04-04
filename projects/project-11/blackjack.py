@@ -49,8 +49,6 @@ def cards_to_print(cards_list):
     return cards_to_print
 
 
-wants_to_play = input("Do you want to play a game of Blackjack? Enter 'y' for yes or 'n' for no: ").strip().lower()
-
 def play_a_game(card_values, card_suits):
     player = {
         "cards": [],
@@ -107,9 +105,21 @@ def play_a_game(card_values, card_suits):
                 print("\tIt's a Bust, you lost!")
                 break
     
+        while computer["score"] < 21:
+            card = get_random_card(shufled_deck)
+            if computer["score"] + card["value"] > 21:
+                break
+            player["cards"].append(card)
+            player["score"] += card["value"]
+            remove_card(shufled_deck, card)
 
 
-if wants_to_play in ["y", "Y"]:
+wants_to_play = input("Do you want to play a game of Blackjack? Enter 'y' for yes or 'n' for no: ").strip().lower()
+
+while wants_to_play not in ['y', 'n']:
+    wants_to_play = input("Invalid input! Enter 'y' for yes or 'n' for no: ")
+
+if wants_to_play == "y":   
     os.system('cls' if os.name == 'nt' else 'clear')
     print(art.logo)
     play_a_game(card_values, card_suits)

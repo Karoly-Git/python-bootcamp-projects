@@ -48,6 +48,15 @@ def cards_to_print(cards_list):
         cards_to_print.append(card["value"])
     return cards_to_print
 
+def calculate_score(object):
+    for card in object["cards"]:
+        if card["name"] == "ace":
+            if object["score"] + 11 > 21:
+                object["score"] += 1
+            else:
+                object["score"] += 11
+        else:
+            object["score"] += card["value"]
 
 def play_a_game(card_values, card_suits):
     player = {
@@ -73,14 +82,9 @@ def play_a_game(card_values, card_suits):
         computer["cards"].append(card)
         remove_card(shufled_deck, card)
 
-    # if card is Ace?
-    for card in player["cards"]:
-        player["score"] += card["value"]
+    calculate_score(player)
+    calculate_score(computer)
 
-    # if card is Ace?
-    for card in computer["cards"]:
-        computer["score"] += card["value"]
-    
     print(f"\tYour cards: {cards_to_print(player["cards"])}, current score: {player["score"]}")
     print(f"\tComputer's first card: {computer["cards"][0]["value"]}")
     
@@ -124,28 +128,20 @@ def play_a_game(card_values, card_suits):
     else:
         print("Computer won!")
 
-wants_to_play = input("Do you want to play a game of Blackjack? Enter 'y' for yes or 'n' for no: ").strip().lower()
+while True:
+    wants_to_play = input("Do you want to play a game of Blackjack? Enter 'y' for yes or 'n' for no: ").strip().lower()
 
-while wants_to_play not in ['y', 'n']:
-    wants_to_play = input("Invalid input! Enter 'y' for yes or 'n' for no: ")
+    while wants_to_play not in ['y', 'n']:
+        wants_to_play = input("Invalid input! Enter 'y' for yes or 'n' for no: ")
+   
+    if wants_to_play == 'y':
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print(art.logo)
+        play_a_game(card_values, card_suits)
+    else:
+        print("See you next time!")
+        break
 
-if wants_to_play == "y":   
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print(art.logo)
-    play_a_game(card_values, card_suits)
-else:
-    print("See you next time!")
-
-
-
-
-# lose
-# J, Q, K = 1
-# A = 1 or 11
-# if dealer < 17, has to take one more card
 
 #print(cards["7"]["Spades"], cards["Ace"]["Spades"])
 
-# make the deck
-# mix the cards in t deck
-# get random card from deck

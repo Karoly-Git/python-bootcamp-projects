@@ -19,8 +19,8 @@ suits = {
     "Spades": "♠"
 }
 
-# Numbered Cards (2-9)
-for num in range(2, 10):
+# Numbered Cards (2-10)
+for num in range(2, 11):
     cards[str(num)] = {}
     for suit, symbol in suits.items():
         cards[str(num)][suit] = rf"""        

@@ -21,30 +21,32 @@ def choose_difficulty():
 def get_attempts(difficulty):
     return 10 if difficulty == 'e' else 5
 
+def check_answer(attempts, goal_number):
+        while attempts > 0:
+            print(f"\n🔢 You have {attempts} attempt{'s' if attempts > 1 else ''} left.")
+            try:
+                guess = int(input("👉 Enter your guess: "))
+
+                if guess == goal_number:
+                    print(f"\n🎯 Nailed it! The number was {goal_number}. Well done!")
+                    return
+                elif guess < goal_number:
+                    print("📉 Too low.")
+                else:
+                    print("📈 Too high.")
+
+                attempts -= 1
+
+            except ValueError:
+                print("⚠️  Invalid input! Please enter a whole number.")
+
+        print(f"\n💥 You're out of attempts! The number was {goal_number}. Better luck next time!")
+
 def play_a_game():
     print_starting_point()
-    goal_number = get_goal_number()
     attempts = get_attempts(choose_difficulty())
-
-    while attempts > 0:
-        print(f"\n🔢 You have {attempts} attempt{'s' if attempts > 1 else ''} left.")
-        try:
-            guess = int(input("👉 Enter your guess: "))
-
-            if guess == goal_number:
-                print(f"\n🎯 Nailed it! The number was {goal_number}. Well done!")
-                return
-            elif guess < goal_number:
-                print("📉 Too low.")
-            else:
-                print("📈 Too high.")
-
-            attempts -= 1
-
-        except ValueError:
-            print("⚠️ Invalid input! Please enter a whole number.")
-
-    print(f"\n💥 You're out of attempts! The number was {goal_number}. Better luck next time!")
+    goal_number = get_goal_number()
+    check_answer(attempts, goal_number)
 
 def ask_replay():
     again = input("\n🔁 Would you like to play again? (y/n): ").lower()

@@ -1,16 +1,16 @@
 import os
-import random
-import art
+from random import randint
+from art import logo
 
 # Print logo and starting messages
-def print_starting_point():
-    print(art.logo)
+def intro():
+    print(logo)
     print("🎉 Welcome to the Number Guessing Game!")
     print("I'm thinking of a number between 1 and 100... Can you guess what it is?")
 
 # Generate a random number between 1 and 100 as the goal
 def set_goal_number():
-    return random.randint(1, 100)
+    return randint(1, 100)
 
 # Ask user to choose difficulty and validate input
 def set_difficulty():
@@ -49,7 +49,7 @@ def check_answer(attempts, goal_number):
 
 # Start a new game round
 def play_a_game():
-    print_starting_point()
+    intro()
     attempts = set_attempts(set_difficulty())
     goal_number = set_goal_number()
     check_answer(attempts, goal_number)

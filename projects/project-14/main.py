@@ -10,6 +10,10 @@ def choose_random_element(data):
 def compare(a, b):
     return a['follower_count'] > b['follower_count']
 
+def print_element(element):
+    print(f"Compare A: {element['name']}, a {element['description']}, from {element['country']}")
+
+
 def game(data):
     score = 0
     elem_a = choose_random_element(data)
@@ -25,9 +29,9 @@ def game(data):
             if score != 0:
                 print(f"You're right! Current score: {score}")
 
-            print(f"Compare A: {elem_a['name']}, a {elem_a['description']}, from {elem_a['country']}")
+            print_element(elem_a)
             print(vs)
-            print(f"Compare B: {elem_b['name']}, a {elem_b['description']}, from {elem_b['country']}")
+            print_element(elem_b)
 
             answer = input("Who has more followers? Type 'A' or 'B': ").lower()
         

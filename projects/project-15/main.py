@@ -101,7 +101,7 @@ def run_coffee_machine():
             if check_transaction_success(payed, cost):
                 make_drink(drink)
                 if payed > cost:
-                    print(f"Change refunded: £{round(payed - cost, 2)}")
+                    print(f"Change refunded: ${round(payed - cost, 2)}")
             else:
                 print("Sorry that's not enough money. Money refunded.")
 

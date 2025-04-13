@@ -12,4 +12,6 @@ quiz = QuizBrain(question_bank)
 while quiz.still_has_question():
     quiz.next_question()
 
-print(f"You've completed the quiz! Final scor is: {quiz.score} out of {quiz.question_number}.")
+print("\n🎉 You've completed the quiz!")
+print(f"Your final score is: {quiz.score} out of {quiz.question_number}.")
+print("Thanks for playing! 🚀")

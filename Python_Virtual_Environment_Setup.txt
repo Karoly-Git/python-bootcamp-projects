@@ -1,0 +1,31 @@
+1. Install Python:
+   - Ensure Python is installed by running: python --version
+   - If not installed, download from: https://www.python.org/downloads/
+
+2. Install VS Code:
+   - Download and install from: https://code.visualstudio.com/
+   - Install Python extension for VS Code by searching "Python" in Extensions.
+
+3. Open VS Code and Start Your Project:
+   - Open VS Code and navigate to your project folder.
+   - Open the integrated terminal with: View > Terminal or Ctrl+` .
+
+4. Create the Virtual Environment:
+   - Run the following command in the terminal:
+     python -m venv venv
+
+5. Activate the Virtual Environment:
+   - In the terminal, run:
+     .\venv\Scripts\activate
+   - Your prompt should now show (venv) indicating the virtual environment is active.
+
+6. Install Packages:
+   - Install Python packages using pip:
+     pip install <package_name>
+
+7. Configure VS Code to Use the Virtual Environment:
+   - Press Ctrl+Shift+P, type Python: Select Interpreter, and choose the interpreter related to venv (./venv/Scripts/python).
+
+8. Deactivate the Virtual Environment:
+   - To deactivate, type:
+     deactivate

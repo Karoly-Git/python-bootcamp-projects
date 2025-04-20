@@ -8,8 +8,6 @@ class Ball(Turtle):
         self.color(color)
         self.penup()
         self.goto(0, 0)
-        
-        # Set ball speed based on size
         self.size = size
         self.reset_speed()
 

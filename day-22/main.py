@@ -39,19 +39,20 @@ game_is_on = True
 ball_is_moving = False
 
 def move_paddle(action):
+    """Move a paddle only if the ball is currently moving."""
     global ball_is_moving
     if ball_is_moving:
         action()
 
 # Keybindings
 screen.listen()
-
 screen.onkey(lambda: move_paddle(paddle_L.up), "w")
 screen.onkey(lambda: move_paddle(paddle_L.down), "s")
 screen.onkey(lambda: move_paddle(paddle_R.up), "Up")
 screen.onkey(lambda: move_paddle(paddle_R.down), "Down")
 
 def new_round():
+    """Reset paddles and ball, and prepare for a new round."""
     global game_is_on
     if not game_is_on:
         ball.reset()
@@ -61,11 +62,10 @@ def new_round():
         scoreboard.display_message('Click "Enter" to start')
     game_is_on = True
 
-
 screen.onkey(new_round, "n")
 
-# Game
 def play_game():
+    """Run the main game loop until the ball goes out of bounds."""
     global game_is_on, ball_is_moving
     
     if game_is_on:
@@ -104,6 +104,7 @@ def play_game():
             game_is_on = False
             ball_is_moving = False
 
-screen.onkey(play_game, "Return")  # Bind Enter key to start the ball
+# Bind Enter key to start the ball
+screen.onkey(play_game, "Return")
 
 screen.exitonclick()

@@ -3,6 +3,7 @@ from turtle import Screen, Turtle
 from paddle import Paddle
 from ball import Ball
 from field import Field
+from scoreboard import Scoreboard
 import time
 
 FIELD_DIM_X = 600
@@ -15,13 +16,14 @@ GAP = 10  # Distance between the paddle and the border
 BALL_SIZE = 20
 
 screen = Screen()
+screen.setup(width=FIELD_DIM_X + 100, height=FIELD_DIM_Y + 100)
 screen.bgcolor("black")
 screen.title("Pong Game")
 
 # Maximize the window (Windows-friendly)
-canvas = screen.getcanvas()
-root = canvas.winfo_toplevel()
-root.state('zoomed')  # For Windows. On Mac/Linux, try: root.attributes('-zoomed', True)
+# canvas = screen.getcanvas()
+# root = canvas.winfo_toplevel()
+# root.state('zoomed')  # For Windows. On Mac/Linux, try: root.attributes('-zoomed', True)
 
 screen.tracer(0)
 
@@ -29,18 +31,25 @@ field = Field(FIELD_DIM_X, FIELD_DIM_Y)
 paddle_L = Paddle(PADDLE_DIM_X, PADDLE_DIM_Y, GAP, PADDLE_L_COLOR, FIELD_DIM_X, FIELD_DIM_Y, side=-1)  # Left paddle
 paddle_R = Paddle(PADDLE_DIM_X, PADDLE_DIM_Y, GAP, PADDLE_R_COLOR, FIELD_DIM_X, FIELD_DIM_Y, side=+1)  # Right paddle
 ball = Ball(shape="circle", color="white", size=BALL_SIZE)
+scoreboard = Scoreboard(FIELD_DIM_Y)
 
 screen.update()
 
 game_is_on = True
+ball_is_moving = False
+
+def move_paddle(action):
+    global ball_is_moving
+    if ball_is_moving:
+        action()
 
 # Keybindings
 screen.listen()
 
-screen.onkey(paddle_L.up, "w")
-screen.onkey(paddle_L.down, "s")
-screen.onkey(paddle_R.up, "Up")
-screen.onkey(paddle_R.down, "Down")
+screen.onkey(lambda: move_paddle(paddle_L.up), "w")
+screen.onkey(lambda: move_paddle(paddle_L.down), "s")
+screen.onkey(lambda: move_paddle(paddle_R.up), "Up")
+screen.onkey(lambda: move_paddle(paddle_R.down), "Down")
 
 def new_round():
     global game_is_on
@@ -49,14 +58,25 @@ def new_round():
         paddle_L.reset()
         paddle_R.reset()
         screen.update()
+        scoreboard.display_message('Click "Enter" to start')
     game_is_on = True
+
 
 screen.onkey(new_round, "n")
 
 # Game
 def play_game():
-    global game_is_on
+    global game_is_on, ball_is_moving
+    
+    if game_is_on:
+        scoreboard.display_message('')
+    
+    if ball_is_moving:
+        return
+
     while game_is_on:
+        ball_is_moving = True
+
         screen.update()
         time.sleep(0.017)  # ~60 FPS
 
@@ -77,7 +97,12 @@ def play_game():
 
         # Detect ball out of bounds based on full field dimensions
         if ball.xcor() < -FIELD_DIM_X / 2 or ball.xcor() > FIELD_DIM_X / 2:
+            if ball.xcor() < 0:
+                scoreboard.increase_score("R")
+            else:
+                scoreboard.increase_score("L")
             game_is_on = False
+            ball_is_moving = False
 
 screen.onkey(play_game, "Return")  # Bind Enter key to start the ball
 

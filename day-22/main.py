@@ -107,4 +107,4 @@ def play_game():
 # Bind Enter key to start the ball
 screen.onkey(play_game, "Return")
 
-screen.exitonclick()
+screen.mainloop()

@@ -14,10 +14,13 @@
    - Run the following command in the terminal:
      python -m venv venv
 
-5. Activate the Virtual Environment:
+5 Activate the Virtual Environment:
    - In the terminal, run:
      .\venv\Scripts\activate
    - Your prompt should now show (venv) indicating the virtual environment is active.
+
+5 Ensure pip is up to date (optional but recommended):
+   - python -m pip install --upgrade pip
 
 6. Install Packages:
    - Install Python packages using pip:
